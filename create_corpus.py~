@@ -1,6 +1,6 @@
 import mainDLG
 
-INC_DELIM = '____'
+INC_DELIM = '________'
 DELIM = '_'
 SAMPLE = 1000
 
