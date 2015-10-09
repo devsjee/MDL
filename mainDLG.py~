@@ -113,7 +113,7 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	        break
 	
 	    ngram = text[j:k+1]
-	    #print 'ngram value from ',j,' to ',k+1,' is ',ngram
+	    print 'ngram value from ',j,' to ',k+1,' is ',ngram
 	    if occurrences(corpus,ngram)<2:
 	        break
 	    #if len(ngram) == 1 :		#commented to include constraint

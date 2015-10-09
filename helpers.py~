@@ -127,7 +127,7 @@ def calc_precision(vocab,output):
     total = 0
     for word in output:
 	word = word.replace('_','')
-	if len(word)>0:
+	if length(word)>0:
 	    if word in vocab.keys():
 	        correct+=1
 	    total+=1

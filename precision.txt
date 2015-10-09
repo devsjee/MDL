@@ -1,0 +1,106 @@
+Without converting to lowercase
+alice.txt (1)
+precision wrt word boundaries is 0.348106926364 correct = 3503 output len : 10063
+Recall wrt boundaries is 0.342223524814 correct = 3503 boundaries : 10236
+alice.txt (2)
+precision wrt word boundaries is 0.366437664175 correct = 3627 output len : 9898
+Recall wrt boundaries is 0.354337631887 correct = 3627 boundaries : 10236
+alice.txt (3)
+precision wrt word boundaries is 0.373436387674 correct = 3672 output len : 9833
+Recall wrt boundaries is 0.358733880422 correct = 3672 boundaries : 10236
+alice.txt (4)
+precision wrt word boundaries is 0.412009331575 correct = 4062 output len : 9859
+Recall wrt boundaries is 0.396834701055 correct = 4062 boundaries : 10236
+alice.txt (5)
+precision wrt word boundaries is 0.452717499502 correct = 4548 output len : 10046
+Recall wrt boundaries is 0.444314185229 correct = 4548 boundaries : 10236
+
+
+With converting to lowercase
+
+
+alice.txt
+precision wrt word boundaries is 0.291096441797 correct = 1808 output len : 6211
+Recall wrt boundaries is 0.294031549846 correct = 1808 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.329957805907 correct = 1955 output len : 5925
+Recall wrt boundaries is 0.317937876077 correct = 1955 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.351823317925 correct = 2055 output len : 5841
+Recall wrt boundaries is 0.334200683038 correct = 2055 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.366437177281 correct = 2129 output len : 5810
+Recall wrt boundaries is 0.346235160189 correct = 2129 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.409601105163 correct = 2372 output len : 5791
+Recall wrt boundaries is 0.385753781103 correct = 2372 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.458843537415 correct = 2698 output len : 5880
+Recall wrt boundaries is 0.438770531794 correct = 2698 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.49477586788 correct = 2936 output len : 5934
+Recall wrt boundaries is 0.47747601236 correct = 2936 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.526167605167 correct = 3177 output len : 6038
+Recall wrt boundaries is 0.516669377134 correct = 3177 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.555139273497 correct = 3408 output len : 6139
+Recall wrt boundaries is 0.554236461213 correct = 3408 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.580099822895 correct = 3603 output len : 6211
+Recall wrt boundaries is 0.585948934786 correct = 3603 boundaries : 6149
+
+
+With the constraint that a word should have atleast one syllable with one nucleus
+
+alice.txt
+precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
+Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
+Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
+Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.35 correct = 7 output len : 20
+Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
+alice.txt
+precision wrt word boundaries is 0.411095305832 correct = 2023 output len : 4921
+Recall wrt boundaries is 0.328996584811 correct = 2023 boundaries : 6149

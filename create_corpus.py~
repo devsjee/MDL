@@ -1,8 +1,8 @@
 import mainDLG
 
-INC_DELIM = '________'
+global INC_DELIM 
 DELIM = '_'
-SAMPLE = 1000
+SAMPLE = 3000
 
 
 def sort(vocab):
@@ -49,7 +49,7 @@ def load_corpus(fname):
 	with open(fname,'r') as f:
 		for line in f:
 			text = line.lower()
-			text = line.strip()
+			text = text.strip()
 #	    		for punc in punctuation:
 #				text = text.replace(punc,' ')
 	    		text = text.replace('  ',' ')
@@ -74,7 +74,7 @@ def form_vocab(corpus):
 	for word in words:
 		count = vocab.get(word,0) + 1
 		vocab[word] = count
-	print vocab
+	#print vocab
         return vocab
 	
 	
@@ -91,7 +91,7 @@ def form_boundaries(corpus):
 		boundaries.add((index,length))
 		index+=length
 
-	print boundaries
+	#print boundaries
 	return boundaries
 		
 def calc_precision(vocab,output,boundaries):
@@ -114,12 +114,16 @@ def calc_precision(vocab,output,boundaries):
 			key =(index,length)
 			if key in boundaries:
 				correct+=1
-			print key, (key in boundaries)
+			#print key, (key in boundaries)
 			index+=length
 
 
-	print 'precision wrt word boundaries is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
-	print 'Recall wrt boundaries is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
+	s1= 'precision wrt word boundaries is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
+	s2= 'Recall wrt boundaries is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
+
+	with open('precision.txt','a') as f:
+		f.write(s1+'\n')
+		f.write(s2+'\n')
 
 def include_DELIM(corpus):
 	''' takes the corpus and removes all occurrences of DELIM character and returns it
@@ -154,31 +158,41 @@ def calc_recall(output_segment,vocab,threshold):
 
 def main():
 	global SAMPLE
-	f_names =['trimmed_corpus.txt']
+	f_names =['alice.txt']
 	#f_names =['coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
 
 
 	for fname in f_names:
 		corpus = load_corpus(fname) #load corpus with space replaced by underscores,lowercase and all punc removed
-		vocab = form_vocab(corpus[0:SAMPLE]) #number of unique words	vocab is a dict
-		word_boundaries = form_boundaries(corpus[0:SAMPLE])
+
 		text = corpus[0:SAMPLE]
-		text = include_DELIM(text)
+
+		vocab = form_vocab(text) #number of unique words	vocab is a dict
+		word_boundaries = form_boundaries(text)
+
 		corpus = include_DELIM(corpus)
+		text = include_DELIM(text)
 
 		print fname  + " corpus size : "+str(len(corpus))
 		
 		freq = mainDLG.ngrams_freq(corpus,1)
 	        DL = mainDLG.corpusDL(corpus,freq)
 		output= mainDLG.OpSeg(corpus,freq,DL,text)
-		with open('output_'+fname,'w') as f:
+		with open('c1_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
-	
+		
+		with open('precision.txt','a') as f:
+			f.write(fname+'\n')
 		calc_precision(vocab,output,word_boundaries)
 		mainDLG.calc_precision(vocab,output)
 		
 		print
 
 if __name__ == '__main__':
-	main()
+
+	
+	for i in range(0,1):
+		INC_DELIM = ''
+		INC_DELIM *= i	
+		main()
