@@ -53,54 +53,9 @@ Recall wrt boundaries is 0.585948934786 correct = 3603 boundaries : 6149
 
 With the constraint that a word should have atleast one syllable with one nucleus
 
-alice.txt
-precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
-Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
-alice.txt
-precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
-Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
-alice.txt
-precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
-Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.259259259259 correct = 7 output len : 27
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
-precision wrt word boundaries is 0.35 correct = 7 output len : 20
-Recall wrt boundaries is 0.388888888889 correct = 7 boundaries : 18
-alice.txt
+alice.txt	no underscore, one constraint
 precision wrt word boundaries is 0.411095305832 correct = 2023 output len : 4921
 Recall wrt boundaries is 0.328996584811 correct = 2023 boundaries : 6149
+
+alice.text 	no underscore, four constraints
+

@@ -52,9 +52,16 @@ Recall wrt boundaries is 0.585948934786 correct = 3603 boundaries : 6149
 
 
 With the constraint that a word should have atleast one syllable with one nucleus
+
+alice.txt	no underscore, one constraint
+precision wrt word boundaries is 0.411095305832 correct = 2023 output len : 4921
+Recall wrt boundaries is 0.328996584811 correct = 2023 boundaries : 6149
+
+alice.text 	no underscore, four constraints
+
 alice.txt
-precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
-Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
+precision wrt word boundaries is 0.436363636364 correct = 72 output len : 165
+Recall wrt boundaries is 0.363636363636 correct = 72 boundaries : 198
 alice.txt
-precision wrt word boundaries is 0.288874639307 correct = 1802 output len : 6238
-Recall wrt boundaries is 0.293055781428 correct = 1802 boundaries : 6149
+precision wrt word boundaries is 0.446808510638 correct = 21 output len : 47
+Recall wrt boundaries is 0.362068965517 correct = 21 boundaries : 58

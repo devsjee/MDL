@@ -178,7 +178,7 @@ def main():
 		freq = mainDLG.ngrams_freq(corpus,1)
 	        DL = mainDLG.corpusDL(corpus,freq)
 		output= mainDLG.OpSeg(corpus,freq,DL,text)
-		with open('c1_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
+		with open('c2_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
 		
@@ -193,6 +193,6 @@ if __name__ == '__main__':
 
 	
 	for i in range(0,1):
-		INC_DELIM = ''
+		INC_DELIM = '_'
 		INC_DELIM *= i	
 		main()
