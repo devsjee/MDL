@@ -57,11 +57,38 @@ alice.txt	no underscore, one constraint
 precision wrt word boundaries is 0.411095305832 correct = 2023 output len : 4921
 Recall wrt boundaries is 0.328996584811 correct = 2023 boundaries : 6149
 
-alice.text 	no underscore, four constraints
+alice.text 	no underscore, five constraints
+
+precision wrt word boundaries is 0.405828280853 correct = 2075 output len : 5113
+Recall wrt boundaries is 0.33745324443 correct = 2075 boundaries : 6149
+
+
+alice.txt	no underscore, nuclues, le constraints
+precision wrt word boundaries is 0.41146574507 correct = 2024 output len : 4919
+Recall wrt boundaries is 0.32915921288 correct = 2024 boundaries : 6149
+
+alice.txt no underscore, nucleus,illegal onset constraints
+precision wrt word boundaries is 0.413547599675 correct = 2033 output len : 4916
+Recall wrt boundaries is 0.330622865507 correct = 2033 boundaries : 6149
+alice.txt
+precision wrt word boundaries is 0.291412029592 correct = 1812 output len : 6218
+Recall wrt boundaries is 0.294682062124 correct = 1812 boundaries : 6149
+
+alice.txt no underscore , nucleus, maximum onset principle
+precision wrt word boundaries is 0.410917207792 correct = 2025 output len : 4928
+Recall wrt boundaries is 0.32932184095 correct = 2025 boundaries : 6149
+alice.txt maximum onset principle only
+precision wrt word boundaries is 0.288917360666 correct = 1804 output len : 6244
+Recall wrt boundaries is 0.293381037567 correct = 1804 boundaries : 6149
+
+alice.txt no underscore, nuclues,suffix constraints
+precision wrt word boundaries is 0.402190923318 correct = 2056 output len : 5112
+Recall wrt boundaries is 0.334363311107 correct = 2056 boundaries : 6149
+alice.txt no undersore ,only suffix constraint
+precision wrt word boundaries is 0.283616692427 correct = 1835 output len : 6470
+Recall wrt boundaries is 0.298422507725 correct = 1835 boundaries : 6149
+
 
 alice.txt
-precision wrt word boundaries is 0.436363636364 correct = 72 output len : 165
-Recall wrt boundaries is 0.363636363636 correct = 72 boundaries : 198
-alice.txt
-precision wrt word boundaries is 0.446808510638 correct = 21 output len : 47
-Recall wrt boundaries is 0.362068965517 correct = 21 boundaries : 58
+precision wrt word boundaries is 0.291002736198 correct = 1808 output len : 6213
+Recall wrt boundaries is 0.294031549846 correct = 1808 boundaries : 6149
