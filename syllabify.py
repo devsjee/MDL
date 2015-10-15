@@ -1,6 +1,7 @@
 from nltk.stem.lancaster import LancasterStemmer
 
 
+
 class syllabify():
 
 
@@ -12,10 +13,10 @@ class syllabify():
 
 		stem = len(word)-stemmed_length
 
-		if stem >0:
-			word = self.parse(stemmed_word)+'_'+word[-1*stem:]
-		else:
-			word = self.parse(word)
+		#if stem >0:
+		#	word = self.parse(stemmed_word)+'_'+word[-1*stem:]
+		#else:
+		word = self.parse(word)
 		
 		print word
 
@@ -30,12 +31,24 @@ class syllabify():
 
 		w_index =0
 		for i in range(len(t_word)):
+			if i == len(t_word)-1 and t_word[i]=='e':
+				word = word[:-3]+'_'+word[-3:]
+				break
+
 			if t_word[i] in vowels:
 				if i ==0:
+					w_index+=1
 					continue
+				elif t_word[i+1] in vowels:
+					w_index+=1
+					continue
+				elif i<len(t_word)-3 and t_word[i+1] not in vowels and t_word[i+2] not in vowels and t_word[i+3] in vowels:
+					word = word[:w_index+2]+'_'+word[w_index+2:]
+					i=i+4
+					w_index+=5
 				else:
 					index = -1
-					for j in range(w_index-1,-1,-1):
+					for j in range(w_index-2,-1,-1):
 						if word[j] in vowels:
 							index=j
 							break
@@ -46,4 +59,4 @@ class syllabify():
 
 		return word
 
-
+syllabify('approach')
