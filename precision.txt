@@ -99,3 +99,6 @@ Recall wrt boundaries is 0.298422507725 correct = 1835 boundaries : 6149
 
 
 
+mod_alice.txt
+precision wrt word boundaries is 0.524352331606 correct = 3036 output len : 5790
+Recall wrt boundaries is 0.520576131687 correct = 3036 boundaries : 5832

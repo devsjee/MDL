@@ -158,7 +158,7 @@ def calc_recall(output_segment,vocab,threshold):
 
 def main():
 	global SAMPLE
-	f_names =['alice.txt']
+	f_names =['mod_alice.txt']
 	#f_names =['coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
 
 
@@ -192,7 +192,7 @@ def main():
 if __name__ == '__main__':
 
 	
-	for i in range(0,1):
+	for i in range(7,8):
 		INC_DELIM = '_'
 		INC_DELIM *= i	
 		main()

@@ -27,8 +27,8 @@ for fname in f_names:
 		else:
 			s_word=stemmer.stemmed(word)
 			if s_word != word and s_word in syllables:
-				word = syllables[s_word]+'#'+word[-1*len(s_word)]
-			
+				t_word = syllables[s_word]+'#'+word[-1*(len(word)-len(s_word)):]
+				word=t_word
 		text+=' '+word
 
 	
