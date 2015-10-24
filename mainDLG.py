@@ -111,8 +111,7 @@ def DLG(corpus,unigram_freq,DL,substr):
 	   # return dlg+1000
 	
 
-    return dlg    
-
+    return dlg*1.0/DL
 
 def OpSeg(corpus,unigram_freq,DL,text):
     n = len(text)

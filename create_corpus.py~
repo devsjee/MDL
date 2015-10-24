@@ -1,8 +1,9 @@
 import mainDLG
+from nltk.corpus import brown
 
 global INC_DELIM 
 DELIM = '_'
-SAMPLE = 30000
+SAMPLE = 400000
 
 
 def sort(vocab):
@@ -45,18 +46,26 @@ def load_corpus(fname):
 	'''
 	global DELIM
 	data = ''
+	file_text = None
 	#punctuation ='!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~\t\n\r\x0b\x0c'
-	with open(fname,'r') as f:
-		for line in f:
-			text = line.lower()
-			text = text.strip()
-#	    		for punc in punctuation:
-#				text = text.replace(punc,' ')
-	    		text = text.replace('  ',' ')
-			text = text.replace('  ',' ')
-			text = text.replace('  ',' ')
-			text = text.replace(' ','_')
-			data += text
+	
+	if fname == 'BROWN':
+		words = brown.words()
+		file_text = ' '.join(words)
+	else:
+		with open(fname,'r') as f:
+			file_text = f.readlines()
+
+	for line in file_text:
+		text = line.lower()
+		text = text.strip()
+#    		for punc in punctuation:
+#			text = text.replace(punc,' ')
+    		text = text.replace('  ',' ')
+		text = text.replace('  ',' ')
+		text = text.replace('  ',' ')
+		text = text.replace(' ','_')
+		data += text
 
 	return data
 	
@@ -158,13 +167,12 @@ def calc_recall(output_segment,vocab,threshold):
 
 def main():
 	global SAMPLE
-	f_names =['mod_alice.txt']
+	f_names =['BROWN']
 	#f_names =['coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
 
 
 	for fname in f_names:
 		corpus = load_corpus(fname) #load corpus with space replaced by underscores,lowercase and all punc removed
-
 		text = corpus[0:SAMPLE]
 
 		vocab = form_vocab(text) #number of unique words	vocab is a dict
@@ -178,7 +186,7 @@ def main():
 		freq = mainDLG.ngrams_freq(corpus,1)
 	        DL = mainDLG.corpusDL(corpus,freq)
 		output= mainDLG.OpSeg(corpus,freq,DL,text)
-		with open('c2_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
+		with open('Sample_4lakh_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
 		
@@ -192,7 +200,7 @@ def main():
 if __name__ == '__main__':
 
 	
-	for i in range(7,8):
+	for i in range(0,1):
 		INC_DELIM = '_'
 		INC_DELIM *= i	
 		main()

@@ -71,7 +71,7 @@ def DLG(corpus,unigram_freq,DL,substr):
         return 0
 	
     if substr_len == 3 and substr[-2:]=='le' :
-	print 'Illegal segment ending in le ',substr
+	#print 'Illegal segment ending in le ',substr
 	return -1000
 
     #if substr[0:2] in {'db','km','lp','mp','ns','ms','td','kd','md','ld','bd','cd','fd','gd','hd','jd','nd','pd','qd','rd','sd','vd','wd','xd','yd','zd'}:
