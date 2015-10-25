@@ -1,9 +1,9 @@
-import mainDLG
+import LexicalDLG
 from nltk.corpus import brown
 
 global INC_DELIM 
 DELIM = '_'
-SAMPLE = 400000
+SAMPLE = 500
 
 
 def sort(vocab):
@@ -167,7 +167,7 @@ def calc_recall(output_segment,vocab,threshold):
 
 def main():
 	global SAMPLE
-	f_names =['BROWN']
+	f_names =['alice.txt']
 	#f_names =['coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
 
 
@@ -183,14 +183,14 @@ def main():
 
 		print fname  + " corpus size : "+str(len(corpus))
 		
-		freq = mainDLG.ngrams_freq(corpus,1)
-	        DL = mainDLG.corpusDL(corpus,freq)
-		output= mainDLG.OpSeg(corpus,freq,DL,text)
-		with open('Sample_4lakh_output_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
+		freq = LexicalDLG.ngrams_freq(corpus,1)
+	        DL = LexicalDLG.corpusDL(corpus,freq)
+		output= LexicalDLG.OpSeg(corpus,freq,DL,text)
+		with open('lexicalQual_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
 		
-		with open('precision.txt','a') as f:
+		with open('precision_lexQual.txt','a') as f:
 			f.write(fname+'\n')
 		calc_precision(vocab,output,word_boundaries)
 		mainDLG.calc_precision(vocab,output)
