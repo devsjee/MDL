@@ -130,7 +130,7 @@ def calc_precision(vocab,output,boundaries):
 	s1= 'precision wrt word boundaries is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
 	s2= 'Recall wrt boundaries is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
 
-	with open('precision.txt','a') as f:
+	with open('precision_lexQual.txt','a') as f:
 		f.write(s1+'\n')
 		f.write(s2+'\n')
 
@@ -193,7 +193,7 @@ def main():
 		with open('precision_lexQual.txt','a') as f:
 			f.write(fname+'\n')
 		calc_precision(vocab,output,word_boundaries)
-		mainDLG.calc_precision(vocab,output)
+		LexicalDLG.calc_precision(vocab,output)
 		
 		print
 

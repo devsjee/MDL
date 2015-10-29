@@ -1,2 +1,17 @@
 alice.txt
 alice.txt
+alice.txt
+precision wrt word boundaries is 0.142857142857 correct = 30 output len : 210
+Recall wrt boundaries is 0.30612244898 correct = 30 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.142857142857 correct = 30 output len : 210
+Recall wrt boundaries is 0.30612244898 correct = 30 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.280373831776 correct = 30 output len : 107
+Recall wrt boundaries is 0.30612244898 correct = 30 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.29 correct = 29 output len : 100
+Recall wrt boundaries is 0.295918367347 correct = 29 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.275 correct = 33 output len : 120
+Recall wrt boundaries is 0.336734693878 correct = 33 boundaries : 98

@@ -130,7 +130,7 @@ def calc_precision(vocab,output,boundaries):
 	s1= 'precision wrt word boundaries is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
 	s2= 'Recall wrt boundaries is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
 
-	with open('precision.txt','a') as f:
+	with open('precision_lexQual.txt','a') as f:
 		f.write(s1+'\n')
 		f.write(s2+'\n')
 
@@ -183,9 +183,9 @@ def main():
 
 		print fname  + " corpus size : "+str(len(corpus))
 		
-		freq = mainDLG.ngrams_freq(corpus,1)
-	        DL = mainDLG.corpusDL(corpus,freq)
-		output= mainDLG.OpSeg(corpus,freq,DL,text)
+		freq = LexicalDLG.ngrams_freq(corpus,1)
+	        DL = LexicalDLG.corpusDL(corpus,freq)
+		output= LexicalDLG.OpSeg(corpus,freq,DL,text)
 		with open('lexicalQual_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
