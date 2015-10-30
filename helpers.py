@@ -31,6 +31,8 @@ def corpusDL(corpus,freq):
     DL =0
     for key,value in freq.iteritems():
 	DL += value * (math.log(value,2) - math.log(X,2))
+	#if key == 'e' or key =='s':
+	#    print key ,' occurs ', str(value),' times and code length is ',str(math.log(value,2) - math.log(X,2))
     DL = -1*DL
     return DL
 

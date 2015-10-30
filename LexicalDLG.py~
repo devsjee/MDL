@@ -179,8 +179,13 @@ def calc_new_DL(unigram_freq,substr,substr_freq,new_corpus_len):
         new_freq = freq - substr_freq*substr_key_freq + substr_key_freq 
 	#print 'value ',value,'cs ',cs,'csx',csx,'n ',n;
 	new_DL += new_freq * (math.log(new_freq,2) -math.log(1.0*new_corpus_len,2))
-    
-    new_DL += substr_freq* (math.log(substr_freq,2) - math.log(new_corpus_len,2))
+	#if unigram == 's' or unigram == 'e':
+	#    print 'freq of ',unigram,' is ',str(new_freq),'; code length is ',str(math.log(new_freq,2) -math.log(1.0*new_corpus_len,2))
+		
+
+    #print 'new_DL for unigrams only ',str(-1*new_DL)
+    #print 'code length is ',str(math.log(substr_freq,2) - math.log(1.0*new_corpus_len,2))
+    new_DL += substr_freq* (math.log(substr_freq,2) - math.log(1.0*new_corpus_len,2))
     new_DL = -1*new_DL
     return new_DL
 
@@ -196,25 +201,31 @@ def DLG(corpus,unigram_freq,DL,substr):
     corpus_len = len(corpus)
     substr_len = len(substr)
 
+    if substr_len == 1:
+	return 0
 
     substr_freq = occurrences(corpus,substr)
     new_corpus_len = corpus_len - substr_freq*substr_len + substr_freq + substr_len + 1
     #print s+' occurs '+ str(cs) + ' times'
     
     new_DL = calc_new_DL(unigram_freq,substr,substr_freq,new_corpus_len)
+    #print substr,' ',substr_freq,' times. ' ,DL,'   ',new_DL
+    #raw_input('')
     dlg = (DL - new_DL) /substr_freq
     #print 'DLG of {} is {}'.format(substr,dlg)
    
-    norm_DLG = dlg*1.0/DL
-    print norm_DLG
-    return norm_DLG  #normalised to be in the range 0 to 1
+    #norm_DLG = dlg*1.0/DL
+    if dlg<0 :
+	dlg = 0
+    #print dlg
+    return dlg  #normalised to be in the range 0 to 1
 
 
 def lexical_quality(substr):
 	### added on 08-09-15 to include the constraint that a valid English word will have atleast one syllable with one nuclues
     substr_len = len(substr)
 
-    vowels = ['a','e','i','o','u','_']
+    vowels = ['a','e','i','o','u']
     v_count = 0
 
     for character in substr:
@@ -223,16 +234,16 @@ def lexical_quality(substr):
 
     if v_count ==0:
         #print 'DLG of {} is {}'.format(substr,-1000)
-	return 0
+	return -1
     
 	
     if substr_len == 3 and substr[-2:]=='le' :
 	#print 'Illegal segment ending in le ',substr
-	return 0
+	return -1
 
     if substr[0:2] in {'db','km','lp','mp','ns','ms','td','kd','md','ld','bd','cd','fd','gd','hd','jd','nd','pd','qd','rd','sd','vd','wd','xd','yd','zd'}:
 	#print 'Illegal onset ',substr
-	return 0
+	return -1
 	
     if substr_len > 3:
 	flag = False
@@ -246,9 +257,9 @@ def lexical_quality(substr):
 
 	if flag == False:
 	    #print 'Beginning with three consonants : ',substr
-	    return 0
+	    return -1
 
-    return 1	
+    return 1.5	
 	
 
 def OpSeg(corpus,unigram_freq,DL,text):
@@ -281,36 +292,38 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	
 	    ngram = text[j:k+1]
 	    #print 'ngram value from ',j,' to ',k+1,' is ',ngram
-	    if occurrences(corpus,ngram)<2:
-	        break
+	    #if occurrences(corpus,ngram)<2:
+	    #    break
 	    #if len(ngram) == 1 :		#commented to include constraint
 	    #    dlgain = DLG_stored[j-1]
             if j>0:
-	        dlgain = DLG_stored[j-1] + DLG(corpus,unigram_freq,DL,ngram)
-		lexgain = lex_stored[j-1] + lexical_quality(ngram)
+	        dlgain = DLG_stored[j-1] + lexical_quality(ngram)*DLG(corpus,unigram_freq,DL,ngram)
+		#lexgain = lex_stored[j-1] + lex_stored[j-1]
 	    else:
-		dlgain = DLG(corpus,unigram_freq,DL,ngram)
-		lexgain = lexical_quality(ngram)
+		dlgain = lexical_quality(ngram)*DLG(corpus,unigram_freq,DL,ngram)
+		#lexgain = lexical_quality(ngram)
 
 	    '''print DLG_stored
             print 'new DL', dlgain
             print 'DLG_stored is ',DLG_stored[k]'''
 	    #print type(dlgain), type(lexgain), type(DLG_stored[k]), type(lex_stored[k])
-	    if (ALPHA*dlgain + BETA*lexgain) > (ALPHA*DLG_stored[k] + BETA*lex_stored[k]):
+#	    if (ALPHA*dlgain + BETA*lexgain) > (ALPHA*DLG_stored[k] + BETA*lex_stored[k]):
+	    if (dlgain > DLG_stored[k]):
 		if j>0:
 	            OS[k][:] = []
                     OS[k] = copy.deepcopy(OS[j-1])
 	            OS[k].append(ngram)
 		#print 'ngram is ',ngram
                     DLG_stored[k] = dlgain
-		    lex_stored[k] = lexgain
-                #print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
+#		    lex_stored[k] = lexgain
+                    print 'OS[{}] is now assigned {} with dlgain {}'.format(k,OS[k],DLG_stored[k])
 		elif j==0:
 		    OS[k][:]=[]
 		    OS[k].append(ngram)
 		    DLG_stored[k] = dlgain
-		    lex_stored[k] = lexgain
-                #print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
+#		    lex_stored[k] = lexgain
+                    print 'OS[{}] is now assigned {} with dlgain {}'.format(k,OS[k],DLG_stored[k])
+		raw_input('')
     return OS[n-1]
 
 

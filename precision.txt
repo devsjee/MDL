@@ -112,3 +112,9 @@ Recall wrt boundaries is 0.326530612245 correct = 32 boundaries : 98
 alice.txt
 precision wrt word boundaries is 0.351648351648 correct = 32 output len : 91
 Recall wrt boundaries is 0.326530612245 correct = 32 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.351648351648 correct = 32 output len : 91
+Recall wrt boundaries is 0.326530612245 correct = 32 boundaries : 98
+alice.txt
+precision wrt word boundaries is 0.351648351648 correct = 32 output len : 91
+Recall wrt boundaries is 0.326530612245 correct = 32 boundaries : 98
