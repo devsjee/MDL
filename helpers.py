@@ -32,8 +32,9 @@ def corpusDL(corpus,freq):
     for key,value in freq.iteritems():
 	DL += value * (math.log(value,2) - math.log(X,2))
 	#if key == 'e' or key =='s':
-	#    print key ,' occurs ', str(value),' times and code length is ',str(math.log(value,2) - math.log(X,2))
+	#    print key ,' in original corpus occurs ', str(value),' times and code length is ',str(math.log(value,2) - math.log(X,2))
     DL = -1*DL
+    print 'DL is ',str(DL), ' Maximum DLG will be ',str(DL - (((X*1.0)/30)*math.log(30,2)))
     return DL
 
 ##########################################################################
