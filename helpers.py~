@@ -15,6 +15,8 @@ def ngrams_freq(text,ngram_len):
 		ngrams_dict[temp] +=1
 	else:
 		ngrams_dict[temp] =1
+    with open('ngram_dict_'+str(ngram_len),'wb') as f:
+	pickle.dump(ngrams_dict,f)
 
     return ngrams_dict
 
@@ -160,7 +162,7 @@ def calc_precision_words(vocab,output):
 	recall_base += vocab[segment]
     
     s1= 'Precision is '+str((correct*1.)/total)		#relevant segments / total number of segments in output
-    s2= 'Recall is ',str((correct*1.)/recall_base)	#relevant segments / actual number of segments as in input
+    s2= 'Recall is '+str((correct*1.)/recall_base)	#relevant segments / actual number of segments as in input
    
     with open('word_precision.txt','a') as f:
 	f.write(s1+'\n')

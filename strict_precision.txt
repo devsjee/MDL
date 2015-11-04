@@ -4,3 +4,12 @@ Recall wrt boundaries (strict) is 0.222222222222 correct = 2 boundaries : 9
 alice.txt
 precision wrt word boundaries (strict) is 0.181818181818 correct = 2 output len : 11
 Recall wrt boundaries (strict) is 0.222222222222 correct = 2 boundaries : 9
+BROWN
+precision wrt word boundaries (strict) is 0.714285714286 correct = 5 output len : 7
+Recall wrt boundaries (strict) is 0.555555555556 correct = 5 boundaries : 9
+BROWN
+precision wrt word boundaries (strict) is 0.714285714286 correct = 5 output len : 7
+Recall wrt boundaries (strict) is 0.555555555556 correct = 5 boundaries : 9
+BROWN
+precision wrt word boundaries (strict) is 0.0 correct = 0 output len : 4
+Recall wrt boundaries (strict) is 0.0 correct = 0 boundaries : 9

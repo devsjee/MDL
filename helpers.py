@@ -1,5 +1,6 @@
 import math
 import string
+import pickle
 from nltk.corpus import brown
 
 def ngrams_freq(text,ngram_len):
@@ -15,6 +16,8 @@ def ngrams_freq(text,ngram_len):
 		ngrams_dict[temp] +=1
 	else:
 		ngrams_dict[temp] =1
+    with open('ngram_dict_'+str(ngram_len),'wb') as f:
+	pickle.dump(ngrams_dict,f)
 
     return ngrams_dict
 

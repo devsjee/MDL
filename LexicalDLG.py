@@ -9,20 +9,23 @@ def main():
 	#f_names =['BROWN','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
         
         DELIM = '_'
-	delim_len = 1
+	delim_len = 0
 
 	for fname in f_names:
 		corpus = load_corpus(fname,DELIM) #load corpus with space replaced by underscores,lowercase and all punc removed
-		text = corpus[0:SAMPLE]
+		text = corpus #[0:SAMPLE]
 
 		vocab = form_vocab(text,DELIM) #number of unique words	vocab is a dict
 		word_boundaries = form_boundaries(text,DELIM)
 
-		#corpus = increase_DELIM(corpus,DELIM,delim_len)
-		#text = increase_DELIM(text,DELIM,delim_len)
+		corpus = increase_DELIM(corpus,DELIM,delim_len)
+		text = increase_DELIM(text,DELIM,delim_len)
 
 		print fname  + " corpus size : "+str(len(corpus))
-		print 'SAMPLE size ',str(SAMPLE)
+		#print 'SAMPLE size ',str(SAMPLE)
+		
+		#for ngram_len in range(11,26):
+	   	#	ngrams_freq(corpus,ngram_len)	
 
 		freq = ngrams_freq(corpus,1)
 	        DL = corpusDL(corpus,freq)
