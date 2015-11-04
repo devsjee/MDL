@@ -1,6 +1,6 @@
 import math
 import string
-
+from nltk.corpus import brown
 
 def ngrams_freq(text,ngram_len):
     '''
@@ -45,20 +45,57 @@ def occurrences(sentence,substring):
 ##########################################################################
 
 
-def load_corpus(fname):
-    ''' takes the filename in which space separated text is located 
-	and returns as the continous text in lowercase
+def increase_DELIM(corpus,DELIM,INC):
+	''' takes the corpus and replaces all occurrences of DELIM character multiplied by INC.
+	corpus : continuous text (string)
+	DELIM : a single delimiter character
+	INC : an integer that tells the length of the resulting corpus 
+	'''
+	INC_DELIM = INC*DELIM
+	corpus = corpus.replace(DELIM,INC_DELIM)
+
+	return corpus
+
+##############################################################################33
+def load_corpus(fname,delimiter):
+	''' takes the filename in which space separated text is located 
+	and returns as the continous text in lowercase and spaces replaced by underscores
         fname : file name as string
-    '''
-    data = ''
-    with open(fname,'r') as f:
-	for line in f:
-	    data+= str(line.strip())
+	'''
 
-    data = data.lower()
-    data = data.replace(' ','')
-    return data
+	data = ''
+	#punctuation ='!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~\t\n\r\x0b\x0c'
+	
 
+	if fname == 'BROWN':
+		words = brown.words()
+		text = ' '.join(words)
+		text = text.lower()
+		text = text.strip()
+#    		for punc in punctuation:
+#			text = text.replace(punc,' ')
+    		text = text.replace('  ',' ')
+		text = text.replace('  ',' ')
+		text = text.replace('  ',' ')
+		text = text.replace(' ',delimiter)
+		data = text
+	else:
+		with open(fname,'r') as f:
+			file_text = f.readlines()
+
+		for line in file_text:
+			text = line.lower()
+			text = text.strip()
+#    		for punc in punctuation:
+#			text = text.replace(punc,' ')
+    			text = text.replace('  ',' ')
+			text = text.replace('  ',' ')
+			text = text.replace('  ',' ')
+			text = text.replace(' ',delimiter)
+			data += text
+
+
+	return data
 	
 ##########################################################################
 
@@ -99,32 +136,14 @@ def load_vocab(fname):
 
 ###########################################################################
 
-def calc_precision(vocab,output):
+def calc_precision_words(vocab,output):
     ''' takes the original vocabulary of the input file as a dict containing
 	(word,freq) and the output as a list  of segments
 	calculates the word wise precision and prints it
 	vocab : dict
 	output: list
     '''
-    graph = []
-    new_vocab = {}
-  
 
-    for word in output:
-	count = new_vocab.get(word,0)+1
-	new_vocab[word] = count
-    with open('analyse','w') as f:
-	for word,count in vocab.iteritems():
-            f.write(word + '\t\t'+ str(count)+ '\t'+ str(new_vocab.get(word,0)) + '\n')
-	    graph.append((count,new_vocab.get(word,0)))
-
-    with open('output.txt','w') as f:
-	for word,count in new_vocab.iteritems():
-            f.write(word + '\t\t'+ str(count) + '\n')
-	
-    f=open('graph.txt','w')
-    for line in graph:
-	f.write(str(line[0])+ ' '+ str(line[1])+ '\n')
 
     correct =0
     total = 0
@@ -133,8 +152,118 @@ def calc_precision(vocab,output):
 	if len(word)>0:
 	    if word in vocab.keys():
 	        correct+=1
+
 	    total+=1
 
-    print 'Precision is '+str((correct*1.)/total)
+    recall_base = 0
+    for segment in vocab.keys():
+	recall_base += vocab[segment]
+    
+    s1= 'Precision is '+str((correct*1.)/total)		#relevant segments / total number of segments in output
+    s2= 'Recall is '+str((correct*1.)/recall_base)	#relevant segments / actual number of segments as in input
+   
+    with open('word_precision.txt','a') as f:
+	f.write(s1+'\n')
+	f.write(s2+'\n')
+
+######################################################################################################
+def calc_precision_boundaries_strict(vocab,output,boundaries):
+	''' output : list format
+	if a segment is present in boundaries,it is counted as correct.
+	to check if its present, we form an element with starting position and 
+	length of segment as a tuple
+	'''
+	correct = 0
+	total = 0	
+	index = 0
+	flag = False
+
+	for word in output:
+
+		word = word.replace('_','')
+		length = len(word)
+		if length > 0:
+			total+=1
+			key =(index,length)
+			if key in boundaries:
+				correct+=1
+			#print key, (key in boundaries)
+			index+=length
+
+
+	s1= 'precision wrt word boundaries (strict) is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
+	s2= 'Recall wrt boundaries (strict) is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
+
+	with open('strict_precision.txt','a') as f:
+		f.write(s1+'\n')
+		f.write(s2+'\n')
+
+#######################################################################################################
+def form_vocab(corpus,DELIM):
+	''' takes the file name as input and forms the vocab list
+	by splitting on underscores
+	corpus : continous text (string)
+	returns a dict containing words and frequency
+	'''
+
+	vocab ={}
+	words = corpus.split(DELIM)
+	for word in words:
+		count = vocab.get(word,0) + 1
+		vocab[word] = count
+	#print vocab
+        return vocab
+
+
+def sort(vocab):
+	vocab_list =[]
+	for key in vocab:
+		vocab_list.append((key,vocab[key]))
+	vocab_list.sort(key= lambda x:x[1],reverse =True)
 	
-    f.close()
+	print 'returning sorted vocab list..'
+	return vocab_list
+
+
+def write_vocab(vocab,fname):
+	with open(fname,'w') as f:
+		for item in vocab:
+			f.writelines(item[0]+", "+str(item[1])+"\n")
+
+	print 'done writing vocab to file'
+
+
+def trim(vocab,freq):
+	'''	takes the vocab list and returns the vocab with keys of frequency above 'freq' only
+	'''
+	temp = []
+	for item in vocab:
+		if item[1] >freq:
+			temp.append(item)
+	return temp
+
+
+def contribution(vocab):
+	size = 0
+	for item in vocab:
+		size+= len(item[0])*item[1]
+	return size
+
+##########################################################################################################
+
+def form_boundaries(corpus,DELIM):
+	'''takes the '_' separated text and forms a set with start position and length
+	of segment as an element
+	'''
+
+	boundaries = set()
+	index = 0
+	words = corpus.split(DELIM)
+	for word in words:
+		length = len(word)
+		boundaries.add((index,length))
+		index+=length
+
+	#print boundaries
+	return boundaries
+		
