@@ -1,0 +1,3 @@
+alice.txt
+Precision is 0.527272727273
+Recall is 0.402777777778

@@ -13,3 +13,42 @@ Recall wrt boundaries (strict) is 0.555555555556 correct = 5 boundaries : 9
 BROWN
 precision wrt word boundaries (strict) is 0.0 correct = 0 output len : 4
 Recall wrt boundaries (strict) is 0.0 correct = 0 boundaries : 9
+alice.txt
+precision wrt word boundaries (strict) is 0.333333333333 correct = 6 output len : 18
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.545454545455 correct = 6 output len : 11
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.545454545455 correct = 6 output len : 11
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.545454545455 correct = 6 output len : 11
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.5 correct = 5 output len : 10
+Recall wrt boundaries (strict) is 0.357142857143 correct = 5 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.545454545455 correct = 6 output len : 11
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.545454545455 correct = 6 output len : 11
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.333333333333 correct = 6 output len : 18
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.333333333333 correct = 6 output len : 18
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.333333333333 correct = 6 output len : 18
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.333333333333 correct = 6 output len : 18
+Recall wrt boundaries (strict) is 0.428571428571 correct = 6 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.466666666667 correct = 7 output len : 15
+Recall wrt boundaries (strict) is 0.5 correct = 7 boundaries : 14
+alice.txt
+precision wrt word boundaries (strict) is 0.527272727273 correct = 29 output len : 55
+Recall wrt boundaries (strict) is 0.402777777778 correct = 29 boundaries : 72

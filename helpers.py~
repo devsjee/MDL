@@ -1,5 +1,6 @@
 import math
 import string
+import pickle
 from nltk.corpus import brown
 
 def ngrams_freq(text,ngram_len):
@@ -196,10 +197,41 @@ def calc_precision_boundaries_strict(vocab,output,boundaries):
 	s1= 'precision wrt word boundaries (strict) is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
 	s2= 'Recall wrt boundaries (strict) is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
 
-	with open('strict_precision.txt','a') as f:
+	with open('precision_strict.txt','a') as f:
 		f.write(s1+'\n')
 		f.write(s2+'\n')
 
+######################################################################################################
+def calc_precision_boundaries_relaxed(vocab,output,boundaries):
+	''' output : list format
+	if a segment is present in boundaries,it is counted as correct.
+	to check if its present, we form an element with starting position and 
+	length of segment as a tuple
+	'''
+	correct = 0
+	total = 0	
+	index = 0
+	flag = False
+
+	for word in output:
+
+		word = word.replace('_','')
+		length = len(word)
+		if length > 0:
+			total+=1
+			key =index
+			if key in boundaries:
+				correct+=1
+			#print key, (key in boundaries)
+			index+=length
+
+
+	s1= 'precision wrt word boundaries (relaxed) is '+str(correct*1.0/total)+ ' correct = '+str(correct)+' output len : '+str(total)
+	s2= 'Recall wrt boundaries (relaxed) is ' + str(correct*1.0/len(boundaries))+ ' correct = '+str(correct)+' boundaries : '+str(len(boundaries))	
+
+	with open('precision_relaxed.txt','a') as f:
+		f.write(s1+'\n')
+		f.write(s2+'\n')
 #######################################################################################################
 def form_vocab(corpus,DELIM):
 	''' takes the file name as input and forms the vocab list
@@ -253,7 +285,7 @@ def contribution(vocab):
 
 ##########################################################################################################
 
-def form_boundaries(corpus,DELIM):
+def form_boundaries_strict(corpus,DELIM):
 	'''takes the '_' separated text and forms a set with start position and length
 	of segment as an element
 	'''
@@ -264,6 +296,21 @@ def form_boundaries(corpus,DELIM):
 	for word in words:
 		length = len(word)
 		boundaries.add((index,length))
+		index+=length
+
+	#print boundaries
+	return boundaries
+
+
+def form_boundaries_relaxed(corpus,DELIM):
+	''' takes the corpus separated by DELIM as delimiter between words . Returns the indices of all boundaries
+	'''
+	boundaries = set()
+	index = 0
+	words = corpus.split(DELIM)
+	for word in words:
+		length = len(word)
+		boundaries.add(index)
 		index+=length
 
 	#print boundaries

@@ -4,7 +4,8 @@ from ViterbiSeg import *
   
 
 def main():
-	SAMPLE = 75
+	SAMPLE = 375
+	f_names = ['alice.txt']
 	#f_names =['BROWN','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
         
         DELIM = '_'
@@ -15,7 +16,8 @@ def main():
 		text = corpus[0:SAMPLE]
 
 		vocab = form_vocab(text,DELIM) #number of unique words	vocab is a dict
-		word_boundaries = form_boundaries(text,DELIM)
+		boundaries_strict = form_boundaries_strict(text,DELIM)
+		boundaries_relaxed = form_boundaries_relaxed(text,DELIM)
 
 		corpus = increase_DELIM(corpus,DELIM,delim_len)
 		text = increase_DELIM(text,DELIM,delim_len)
@@ -33,14 +35,17 @@ def main():
 			for word in output:
 				f.write(word+ '  ')
 		
-		with open('strict_precision.txt','a') as f:
+		with open('precision_strict.txt','a') as f:
 			f.write(fname+'\n')
-
+		
+		with open('precision_relaxed.txt','a') as f:
+			f.write(fname+'\n')
 	
-		with open('word_precision.txt','a') as f:
+		with open('precision_word.txt','a') as f:
 			f.write(fname+'\n')
 
-		calc_precision_boundaries_strict(vocab,output,word_boundaries)
+		calc_precision_boundaries(vocab,output,boundaries_strict)
+		calc_precision_boundaries(vocab,output,boundaries_relaxed)
 		calc_precision_words(vocab,output)
 		
 

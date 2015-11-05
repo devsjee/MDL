@@ -9,8 +9,18 @@ def lexical_quality(substr):
     vowels = ['a','e','i','o','u']
     v_count = 0
 
-    if substr_len == 1 :
+    try: 
+	if str.isdigit(substr) == True:
+	    return -len(substr)
+	elif alpha(substr) == False:
+	    return -1000
+
+    except Exception:
+	pass
+
+    if substr_len == 1 and substr != 'a' and substr != 'i':
 	return -1000
+
 
     for character in substr:
 	if character in vowels:
@@ -29,6 +39,9 @@ def lexical_quality(substr):
 	#print 'Illegal onset ',substr
 	return -1000
 	
+    if substr[-2:] in {'db','km','td','kd','md','bd','cd','fd','gd','hd','jd','pd','qd','sd','vd','wd','xd','yd','zd'}:
+	return -1000
+
     if substr_len > 3:
 	flag = False
 	for c in substr[0:3]:
@@ -74,9 +87,10 @@ def DLG(corpus,unigram_freq,DL,substr):
 	s    : the subsequence
     '''
 
-    if lexical_quality(substr) <0:
-	print 'DLG of {} is {}'.format(substr,-1000)
-	return -1000
+    lex_qual = lexical_quality(substr)
+    if  lex_qual <=0:
+	print 'DLG of {} is {}'.format(substr,lex_qual)
+	return lex_qual
 
     corpus_len = len(corpus)
     substr_len = len(substr)
@@ -88,10 +102,10 @@ def DLG(corpus,unigram_freq,DL,substr):
     
     new_DL = calc_new_DL(unigram_freq,substr,substr_freq,new_corpus_len)
     #print substr,' ',substr_freq,' times. ' ,DL,'   ',new_DL
-    #raw_input('')
+    
     dlg = (DL - new_DL) /substr_freq
     print 'DLG of {} is {}'.format(substr,dlg)
-   
+    #raw_input('')
     #norm_DLG = dlg*1.0/DL
     #if dlg<0 :
 	#dlg = 0
@@ -115,25 +129,25 @@ def OpSeg(corpus,unigram_freq,DL,text):
             OS[k][:]= []
 	    OS[k] = copy.deepcopy(OS[k-1])
 	    OS[k].append(text[k])
-	    DLG_stored.append(DLG_stored[k-1])
+	    DLG_stored.append(DLG_stored[k-1]+DLG(corpus,unigram_freq,DL,text[k]))
     	   
 	else:
 	    OS[k][:]=[]
 	    OS[k].append(text[k])
-	    DLG_stored.append(0)
+	    DLG_stored.append(DLG(corpus,unigram_freq,DL,text[k]))
 	  
-	for j in range(k,-1,-1):
+	for j in range(k-1,-1,-1):
 	    if j < k-25:
 	        break
 	
 	    ngram = text[j:k+1]
-
+	    print 'j value : ',str(j),' k value ',str(k),' current ngram ',ngram
 	    #if occurrences(corpus,ngram)<2:
 	    #    break
-  	    if len(ngram) == 1 :		#commented to include constraint
-	        dlgain = DLG_stored[j]
-	    elif j>0:
-		dlgain = DLG_stored[j]+ DLG(corpus,unigram_freq,DL,ngram)
+  	    #if len(ngram) == 1 :		#commented to include constraint
+	    #    dlgain = DLG_stored[j-1]
+	    if j>0:
+		dlgain = DLG_stored[j-1]+ DLG(corpus,unigram_freq,DL,ngram)
 	      
 	    else:
 		dlgain = DLG(corpus,unigram_freq,DL,ngram)
@@ -154,15 +168,16 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	            OS[k].append(ngram)
 		#print 'ngram is ',ngram
   	            DLG_stored[k] = dlgain
-                    print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
+                    
  		
 		elif j==0:
 		    OS[k][:]=[]
 		    OS[k].append(ngram)
 		    DLG_stored[k] = dlgain		    
-                    print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
+            
 
-		raw_input('')
+	    print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
+	    #raw_input('')
     return OS[n-1]
 
 
