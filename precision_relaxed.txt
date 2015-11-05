@@ -1,3 +1,9 @@
 alice.txt
 precision wrt word boundaries (relaxed) is 0.927272727273 correct = 51 output len : 55
 Recall wrt boundaries (relaxed) is 0.708333333333 correct = 51 boundaries : 72
+BROWN
+precision wrt word boundaries (relaxed) is 0.888888888889 correct = 8 output len : 9
+Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12
+BROWN
+precision wrt word boundaries (relaxed) is 0.888888888889 correct = 8 output len : 9
+Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12

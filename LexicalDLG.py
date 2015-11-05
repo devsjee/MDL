@@ -4,8 +4,8 @@ from ViterbiSeg import *
   
 
 def main():
-	SAMPLE = 375
-	f_names = ['alice.txt']
+	SAMPLE = 75
+	f_names = ['BROWN']
 	#f_names =['BROWN','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
         
         DELIM = '_'

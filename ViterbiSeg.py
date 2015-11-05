@@ -1,5 +1,5 @@
 import copy
-from helpers import occurrences
+from helpers import *
 import math
 
 def lexical_quality(substr):
@@ -96,7 +96,7 @@ def DLG(corpus,unigram_freq,DL,substr):
     substr_len = len(substr)
 
 
-    substr_freq = occurrences(corpus,substr)
+    substr_freq = occurrences_corpus_brown(substr)
     new_corpus_len = corpus_len - substr_freq*substr_len + substr_freq + substr_len + 1
     #print s+' occurs '+ str(cs) + ' times'
     
@@ -104,7 +104,7 @@ def DLG(corpus,unigram_freq,DL,substr):
     #print substr,' ',substr_freq,' times. ' ,DL,'   ',new_DL
     
     dlg = (DL - new_DL) /substr_freq
-    print 'DLG of {} is {}'.format(substr,dlg)
+    #print 'DLG of {} is {}'.format(substr,dlg)
     #raw_input('')
     #norm_DLG = dlg*1.0/DL
     #if dlg<0 :
@@ -141,9 +141,9 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	        break
 	
 	    ngram = text[j:k+1]
-	    print 'j value : ',str(j),' k value ',str(k),' current ngram ',ngram
-	    #if occurrences(corpus,ngram)<2:
-	    #    break
+	    #print 'j value : ',str(j),' k value ',str(k),' current ngram ',ngram
+	    if occurrences_corpus_brown(ngram)<2:
+	        break
   	    #if len(ngram) == 1 :		#commented to include constraint
 	    #    dlgain = DLG_stored[j-1]
 	    if j>0:
@@ -176,7 +176,7 @@ def OpSeg(corpus,unigram_freq,DL,text):
 		    DLG_stored[k] = dlgain		    
             
 
-	    print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
+	    print 'OS[{}] is now assigned with dlgain {} '.format(k,DLG_stored[k])
 	    #raw_input('')
     return OS[n-1]
 

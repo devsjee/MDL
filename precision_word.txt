@@ -1,3 +1,9 @@
 alice.txt
 Precision is 0.527272727273
 Recall is 0.402777777778
+BROWN
+Precision is 0.444444444444
+Recall is 0.333333333333
+BROWN
+Precision is 0.444444444444
+Recall is 0.333333333333

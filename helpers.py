@@ -41,6 +41,21 @@ def corpusDL(corpus,freq):
     return DL
 
 ##########################################################################
+global ngrams 
+ngrams = []
+
+for i in range(1,26):
+    temp = {}
+    with open('../ngram_dict/ngram_'+str(i),'rb') as f:
+	temp = pickle.load(f)
+    ngrams.append(temp)
+
+print 'ngram dicts are loaded..'
+
+def occurrences_corpus_brown(substr):
+    index = len(substr)-1
+    count = ngrams[index].get(substr,0)
+    return count
 
 def occurrences(sentence,substring):
     return sentence.count(substring)

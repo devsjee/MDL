@@ -5,7 +5,7 @@ from ViterbiSeg import *
 
 def main():
 	SAMPLE = 375
-	f_names = ['alice.txt']
+	f_names = ['BROWN']
 	#f_names =['BROWN','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
         
         DELIM = '_'
@@ -44,8 +44,8 @@ def main():
 		with open('precision_word.txt','a') as f:
 			f.write(fname+'\n')
 
-		calc_precision_boundaries(vocab,output,boundaries_strict)
-		calc_precision_boundaries(vocab,output,boundaries_relaxed)
+		calc_precision_boundaries_strict(vocab,output,boundaries_strict)
+		calc_precision_boundaries_relaxed(vocab,output,boundaries_relaxed)
 		calc_precision_words(vocab,output)
 		
 
