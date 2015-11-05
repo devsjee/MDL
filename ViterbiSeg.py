@@ -9,11 +9,14 @@ def lexical_quality(substr):
     vowels = ['a','e','i','o','u']
     v_count = 0
 
+    if substr_len == 1 :
+	return -1000
+
     for character in substr:
 	if character in vowels:
 	    v_count+=1
 
-    if v_count ==0:
+    if v_count ==0 and substr != 'by':
         #print 'DLG of {} is {}'.format(substr,-1000)
 	return -1000
     
@@ -72,13 +75,12 @@ def DLG(corpus,unigram_freq,DL,substr):
     '''
 
     if lexical_quality(substr) <0:
+	print 'DLG of {} is {}'.format(substr,-1000)
 	return -1000
 
     corpus_len = len(corpus)
     substr_len = len(substr)
 
-    if substr_len == 1:
-	return 0
 
     substr_freq = occurrences(corpus,substr)
     new_corpus_len = corpus_len - substr_freq*substr_len + substr_freq + substr_len + 1
@@ -88,7 +90,7 @@ def DLG(corpus,unigram_freq,DL,substr):
     #print substr,' ',substr_freq,' times. ' ,DL,'   ',new_DL
     #raw_input('')
     dlg = (DL - new_DL) /substr_freq
-    #print 'DLG of {} is {}'.format(substr,dlg)
+    print 'DLG of {} is {}'.format(substr,dlg)
    
     #norm_DLG = dlg*1.0/DL
     #if dlg<0 :
@@ -128,9 +130,9 @@ def OpSeg(corpus,unigram_freq,DL,text):
 
 	    #if occurrences(corpus,ngram)<2:
 	    #    break
-  	    #if len(ngram) == 1 :		#commented to include constraint
-	    #    dlgain = DLG_stored[j-1]
-	    if j>0:
+  	    if len(ngram) == 1 :		#commented to include constraint
+	        dlgain = DLG_stored[j-1]
+	    elif j>0:
 		dlgain = DLG_stored[j-1]+ DLG(corpus,unigram_freq,DL,ngram)
 	      
 	    else:
@@ -151,8 +153,9 @@ def OpSeg(corpus,unigram_freq,DL,text):
                     OS[k] = copy.deepcopy(OS[j-1])
 	            OS[k].append(ngram)
 		#print 'ngram is ',ngram
+  	            DLG_stored[k] = dlgain
                     print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
- 		    DLG_stored[k] = dlgain
+ 		
 		elif j==0:
 		    OS[k][:]=[]
 		    OS[k].append(ngram)
