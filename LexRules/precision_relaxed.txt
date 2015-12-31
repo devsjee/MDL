@@ -1,0 +1,4 @@
+precision wrt word boundaries (relaxed) is 0.826515151515 correct = 1091 output len : 1320
+Recall wrt boundaries (relaxed) is 0.613956105796 correct = 1091 boundaries : 1777
+precision wrt word boundaries (relaxed) is 0.826515151515 correct = 1091 output len : 1320
+Recall wrt boundaries (relaxed) is 0.613956105796 correct = 1091 boundaries : 1777

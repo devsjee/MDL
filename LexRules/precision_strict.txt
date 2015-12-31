@@ -1,0 +1,4 @@
+precision wrt word boundaries (strict) is 0.423484848485 correct = 559 output len : 1320
+Recall wrt boundaries (strict) is 0.314575126618 correct = 559 boundaries : 1777
+precision wrt word boundaries (strict) is 0.423484848485 correct = 559 output len : 1320
+Recall wrt boundaries (strict) is 0.314575126618 correct = 559 boundaries : 1777

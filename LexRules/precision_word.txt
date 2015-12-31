@@ -1,0 +1,4 @@
+Precision is 0.451515151515
+Recall is 0.335396736072
+Precision is 0.451515151515
+Recall is 0.335396736072
