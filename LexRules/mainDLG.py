@@ -5,19 +5,6 @@ import time
 from LexRules import *
 
 
-def calc_new_DL(unigram_freq,substr,substr_freq,new_corpus_len):
-    new_DL = 0
-    for unigram,freq in unigram_freq.iteritems():
-        substr_key_freq = occurrences(substr,unigram)
-        #print '{} with freq {} occurs {} times in {}'.format(unigram,freq,substr_key_freq,substr)
-        new_freq = freq - substr_freq*substr_key_freq + substr_key_freq 
-	#print 'freq ',freq,'new_freq ',new_freq,'substr_key_freq',substr_key_freq,'new_corpus_len ',new_corpus_len;
-	new_DL += new_freq * (math.log(new_freq,2) -math.log(1.0*new_corpus_len,2))
-    
-    new_DL += substr_freq* (math.log(substr_freq,2) - math.log(new_corpus_len,2))
-    new_DL = -1*new_DL
-    return new_DL
-
 def print_details(unigram_freq,substr,substr_freq,new_corpus_len,corpus_len,DL):
     new_DL = 0
     old_DL=0

@@ -1,4 +1,37 @@
-precision wrt word boundaries (strict) is 0.423484848485 correct = 559 output len : 1320
-Recall wrt boundaries (strict) is 0.314575126618 correct = 559 boundaries : 1777
-precision wrt word boundaries (strict) is 0.423484848485 correct = 559 output len : 1320
-Recall wrt boundaries (strict) is 0.314575126618 correct = 559 boundaries : 1777
+only MDL
+precision wrt word boundaries (strict) is 0.409647228222 correct = 569 output len : 1389
+Recall wrt boundaries (strict) is 0.320202588633 correct = 569 boundaries : 1777
+
+MDL + combining
+precision wrt word boundaries (strict) is 0.45836768343 correct = 556 output len : 1213
+Recall wrt boundaries (strict) is 0.312886888014 correct = 556 boundaries : 1777
+
+MDL + combining+ splitting (thresh : 0.6)
+precision wrt word boundaries (strict) is 0.55268935236 correct = 1007 output len : 1822
+Recall wrt boundaries (strict) is 0.566685424873 correct = 1007 boundaries : 1777
+
+MDL + combining+ splitting (thresh : 0.75)
+precision wrt word boundaries (strict) is 0.604375 correct = 967 output len : 1600
+Recall wrt boundaries (strict) is 0.544175576815 correct = 967 boundaries : 1777
+
+
+precision wrt word boundaries (strict) is 0.201293661061 correct = 778 output len : 3865
+Recall wrt boundaries (strict) is 0.437816544738 correct = 778 boundaries : 1777
+precision wrt word boundaries (strict) is 0.298620236531 correct = 909 output len : 3044
+Recall wrt boundaries (strict) is 0.51153629713 correct = 909 boundaries : 1777
+precision wrt word boundaries (strict) is 0.380079681275 correct = 954 output len : 2510
+Recall wrt boundaries (strict) is 0.536859876196 correct = 954 boundaries : 1777
+precision wrt word boundaries (strict) is 0.454419250347 correct = 982 output len : 2161
+Recall wrt boundaries (strict) is 0.552616769837 correct = 982 boundaries : 1777
+precision wrt word boundaries (strict) is 0.527546777547 correct = 1015 output len : 1924
+Recall wrt boundaries (strict) is 0.571187394485 correct = 1015 boundaries : 1777
+precision wrt word boundaries (strict) is 0.55268935236 correct = 1007 output len : 1822
+Recall wrt boundaries (strict) is 0.566685424873 correct = 1007 boundaries : 1777
+precision wrt word boundaries (strict) is 0.599636583889 correct = 990 output len : 1651
+Recall wrt boundaries (strict) is 0.557118739449 correct = 990 boundaries : 1777
+precision wrt word boundaries (strict) is 0.600502512563 correct = 956 output len : 1592
+Recall wrt boundaries (strict) is 0.537985368599 correct = 956 boundaries : 1777
+precision wrt word boundaries (strict) is 0.585646580907 correct = 865 output len : 1477
+Recall wrt boundaries (strict) is 0.486775464266 correct = 865 boundaries : 1777
+precision wrt word boundaries (strict) is 0.545854732208 correct = 744 output len : 1363
+Recall wrt boundaries (strict) is 0.418683173889 correct = 744 boundaries : 1777

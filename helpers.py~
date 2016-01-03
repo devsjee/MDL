@@ -53,7 +53,7 @@ for i in range(1,26):
 print 'ngram dicts are loaded..'
 
 def occurrences_corpus_brown(substr):
-    index = len(substring)-1
+    index = len(substr)-1
     count = ngrams[index].get(substr,0)
     return count
 

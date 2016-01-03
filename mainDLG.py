@@ -4,7 +4,7 @@ from nltk.corpus import brown
 
 global INC_DELIM 
 DELIM = '_'
-SAMPLE = 500
+SAMPLE = 2060
 
 
 def sort(vocab):
@@ -324,44 +324,44 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	        OS[k].append(ngram)
 		#print 'ngram is ',ngram
                 DLG_stored[k] = copy.deepcopy(dlgain)
-                #print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
+                print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
 	    elif (dlgain > DLG_stored[k]) and j==0:
 		OS[k][:]=[]
 		OS[k].append(ngram)
 		DLG_stored[k] = copy.deepcopy(dlgain)
-                #print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
+                print 'OS[{}] is now assigned with dlgain {}'.format(k,DLG_stored[k])
     return OS[n-1]
 
 
 def main():
 	global SAMPLE
-	f_names =['alice.txt']
-	#f_names =['coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
+	f_names =['biotext.txt']
+	#f_names =['alice.txt','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
 
 
 	for fname in f_names:
 		corpus = load_corpus(fname) #load corpus with space replaced by underscores,lowercase and all punc removed
 		text = corpus[0:SAMPLE]
 
-		vocab = form_vocab(text) #number of unique words	vocab is a dict
-		word_boundaries = form_boundaries(text)
+		#vocab = form_vocab(text) #number of unique words	vocab is a dict
+		#word_boundaries = form_boundaries(text)
 
-		corpus = include_DELIM(corpus)
-		text = include_DELIM(text)
+		#corpus = include_DELIM(corpus)
+		#text = include_DELIM(text)
 
 		print fname  + " corpus size : "+str(len(corpus))
 		
 		freq = ngrams_freq(corpus,1)
 	        DL = corpusDL(corpus,freq)
 		output= OpSeg(corpus,freq,DL,text)
-		with open('out_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
+		with open('BIO_out_'+str(len(INC_DELIM))+'_'+fname,'w') as f:
 			for word in output:
 				f.write(word+ '  ')
 		
-		with open('precision.txt','a') as f:
+		'''with open('precision.txt','a') as f:
 			f.write(fname+'\n')
 		calc_precision(vocab,output,word_boundaries)
-
+		'''
 		
 		print
 

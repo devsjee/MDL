@@ -4,7 +4,8 @@ from ViterbiSeg import *
   
 
 def main():
-	SAMPLE = 375
+	SAMPLE_start = 0
+	SAMPLE_end = 500
 	f_names = ['BROWN']
 	#f_names =['BROWN','coffee.txt','editorial.txt','news_brown.txt', 'webtext_nltk.txt','alice.txt','brown_religion.txt']
         
@@ -13,7 +14,7 @@ def main():
 
 	for fname in f_names:
 		corpus = load_corpus(fname,DELIM) #load corpus with space replaced by underscores,lowercase and all punc removed
-		text = corpus[0:SAMPLE]
+		text = corpus[SAMPLE_start:SAMPLE_end]
 
 		vocab = form_vocab(text,DELIM) #number of unique words	vocab is a dict
 		boundaries_strict = form_boundaries_strict(text,DELIM)

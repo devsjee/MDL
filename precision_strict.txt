@@ -7,3 +7,9 @@ Recall wrt boundaries (strict) is 0.333333333333 correct = 4 boundaries : 12
 BROWN
 precision wrt word boundaries (strict) is 0.444444444444 correct = 4 output len : 9
 Recall wrt boundaries (strict) is 0.333333333333 correct = 4 boundaries : 12
+BROWN
+precision wrt word boundaries (strict) is 0.444444444444 correct = 4 output len : 9
+Recall wrt boundaries (strict) is 0.333333333333 correct = 4 boundaries : 12
+BROWN
+precision wrt word boundaries (strict) is 0.444444444444 correct = 4 output len : 9
+Recall wrt boundaries (strict) is 0.333333333333 correct = 4 boundaries : 12

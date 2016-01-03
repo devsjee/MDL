@@ -89,14 +89,14 @@ def DLG(corpus,unigram_freq,DL,substr):
 
     lex_qual = lexical_quality(substr)
     if  lex_qual <=0:
-	print 'DLG of {} is {}'.format(substr,lex_qual)
+	#print 'DLG of {} is {}'.format(substr,lex_qual)
 	return lex_qual
 
     corpus_len = len(corpus)
     substr_len = len(substr)
 
 
-    substr_freq = occurrences_corpus_brown(substr)
+    substr_freq = occurrences(corpus,substr)
     new_corpus_len = corpus_len - substr_freq*substr_len + substr_freq + substr_len + 1
     #print s+' occurs '+ str(cs) + ' times'
     
@@ -142,7 +142,7 @@ def OpSeg(corpus,unigram_freq,DL,text):
 	
 	    ngram = text[j:k+1]
 	    #print 'j value : ',str(j),' k value ',str(k),' current ngram ',ngram
-	    if occurrences_corpus_brown(ngram)<2:
+	    if occurrences(corpus,ngram)<2:
 	        break
   	    #if len(ngram) == 1 :		#commented to include constraint
 	    #    dlgain = DLG_stored[j-1]
@@ -176,7 +176,7 @@ def OpSeg(corpus,unigram_freq,DL,text):
 		    DLG_stored[k] = dlgain		    
             
 
-	    print 'OS[{}] is now assigned with dlgain {} '.format(k,DLG_stored[k])
+	    print 'OS[{}] is now assigned {} with dlgain {} '.format(k,OS[k],DLG_stored[k])
 	    #raw_input('')
     return OS[n-1]
 

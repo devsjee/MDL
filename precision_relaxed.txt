@@ -7,3 +7,9 @@ Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12
 BROWN
 precision wrt word boundaries (relaxed) is 0.888888888889 correct = 8 output len : 9
 Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12
+BROWN
+precision wrt word boundaries (relaxed) is 0.888888888889 correct = 8 output len : 9
+Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12
+BROWN
+precision wrt word boundaries (relaxed) is 0.888888888889 correct = 8 output len : 9
+Recall wrt boundaries (relaxed) is 0.666666666667 correct = 8 boundaries : 12
